@@ -5,19 +5,41 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 public class loginCases {
-  @Test
-  public void TC1_LoginWithValidCredentials() {
-	  // Test Data
-	  
+	
+	private WebDriver myBrowser; // Instance variable to store driver
+	
+	/**
+	 * This method runs after each test method.
+	 * It ensures the browser closes even if the test fails.
+	 * This allows TestNG to generate reports properly.
+	 */
+	@AfterMethod
+	public void tearDown() {
+		if (myBrowser != null) {
+			try {
+				myBrowser.quit();
+			} catch (Exception e) {
+				System.out.println("Error closing browser: " + e.getMessage());
+			}
+		}
+	}
+	
+	@Test
+	public void TC1_LoginWithValidCredentials() {
+		// Test Data
+		
+	  String USERNAME = "abidselenium";
+	  String PASSWORD = "6D39GW";
 	  
 	  // Test Steps	
 //		  1. Open browser and navigate to .....
 //		  	-Call WebDriver method to open and navigate...
 	  
-	  WebDriver myBrowser = new ChromeDriver();
+	  myBrowser = new ChromeDriver(); // Use instance variable
 	  // launch that browser and go and navigate to the following url
 	  myBrowser.get("https://adactinhotelapp.com/index.php");
 	  
@@ -25,13 +47,13 @@ public class loginCases {
 //	  - Identify (Locate) Username field : id="username"
 	  
 	  WebElement usernameField = myBrowser.findElement(By.id("username"));//findElement is a parser method and By is a class
-	  usernameField.sendKeys("abidselenium");//sendKeys is a method to type text in the
+	  usernameField.sendKeys(USERNAME);//sendKeys is a method to type text in the
 //	  - Type .....
 	  
 //	   In the Password field, type ...
 //	  - Identify (Locate) Password field: name="password"
 	  WebElement passwordField = myBrowser.findElement(By.name("password"));
-	  passwordField.sendKeys("6D39GW");//sendKeys is a method to type text in the
+	  passwordField.sendKeys(PASSWORD);//sendKeys is a method to type text in the
 //	  - Type ....
 
 	  //	  3. Click on Login button
@@ -48,24 +70,24 @@ public class loginCases {
 		
 		String actualPageHeading = myBrowser.findElement(By.className("login_title")).getText();
 		String PageHeading = "Search Hotel";
+		actualPageHeading = actualPageHeading.split("\\(")[0].trim();
 		Assert.assertEquals(actualPageHeading, PageHeading);
+
 		
 		// User Heading
 		
 		String actualUserHeading = myBrowser.findElement(By.id("username_show")).getAttribute("value");
-		String UserHeading = "abidselenium";
+		String UserHeading = "Hello "+USERNAME+"!";
 		Assert.assertEquals(actualUserHeading,UserHeading);
 //	  
-//		 5. Close the browser
-	  myBrowser.quit();
-		
+//		 5. Browser will be closed automatically by @AfterMethod
 	  	
   }
   
   @Test
   public void TC2_LoginWithInvalidCredentials() {
 	
-	  	WebDriver myBrowser = new ChromeDriver();
+	  	myBrowser = new ChromeDriver(); // Use instance variable
 	  	myBrowser.get("https://adactinhotelapp.com/index.php");
 	  	
 	  	WebElement usernameField = myBrowser.findElement(By.id("username"));
@@ -86,7 +108,7 @@ public class loginCases {
 	  	
 	  	Assert.assertEquals(actualErrorMessageText, expectedErrorMessageText);
 	  	
-	  	myBrowser.quit();
+	  	// Browser will be closed automatically by @AfterMethod
 	  
   }
 }

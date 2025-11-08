@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.loginCases">
+      <class name="tests.searchHotel">
         <methods>
-          <include name="TC1_LoginWithValidCredentials"/>
+          <include name="TC1_StandardRoom_1_Night_Current_Month"/>
+          <include name="tearDown"/>
+          <include name="TC2_DoubleRoom_1_Night_NextYear"/>
         </methods>
-      </class> <!-- tests.loginCases -->
+      </class> <!-- tests.searchHotel -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
