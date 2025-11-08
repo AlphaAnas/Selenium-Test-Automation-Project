@@ -7,7 +7,21 @@
         <methods>
           <include name="TC1_StandardRoom_1_Night_Current_Month"/>
           <include name="tearDown"/>
-          <include name="TC2_DoubleRoom_1_Night_NextYear"/>
+          <include name="TC4_SuperDeluxeRoom_1_Night_365th_Day"/>
+          <include name="TC9_2_StandardRoom_1_Night_Today"/>
+          <include name="TC8_SuperDeluxeRoom_365_Nights_StartToday"/>
+          <include name="TC10_5_DoubleRoom_1_Night_NextMonth"/>
+          <include name="TC3_DeluxeRoom_1_Night_NextYear"/>
+          <include name="TC6_DoubleRoom_10_Nights_NextWeek"/>
+          <include name="TC7_DeluxeRoom_200_Nights_NextMonth"/>
+          <include name="TC15_5_DeluxeRoom_200_Night_After_1_Month"/>
+          <include name="TC13_2_StandardRoom_5_Night_Today"/>
+          <include name="TC11_9_DeluxeRoom_1_Night_NextAug"/>
+          <include name="TC16_10_SuperDeluxeRoom_365_Night_Today"/>
+          <include name="TC2_DoubleRoom_1_Night_NextMonth"/>
+          <include name="TC12_10_SuperDeluxeRoom_1_Night_364th_Day"/>
+          <include name="TC5_StandardRoom_2_Nights_Today"/>
+          <include name="TC14_4_DoubleRoom_10_Night_After_3_Months"/>
         </methods>
       </class> <!-- tests.searchHotel -->
     </classes>
