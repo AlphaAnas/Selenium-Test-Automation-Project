@@ -142,7 +142,7 @@ public class searchHotel {
                 // Browser will be closed automatically by @AfterMethod
             }
             @Test
-            public void TC2_DoubleRoom_1_Night_NextYear(){
+            public void TC2_DoubleRoom_1_Night_NextMonth(){
                 
                 mybrowser = loginToApp("abidselenium", "6D39GW"); // Use instance variable
 
@@ -214,6 +214,159 @@ public class searchHotel {
 
                 // Browser will be closed automatically by @AfterMethod
             }
+            @Test
+            public void TC3_DeluxeRoom_1_Night_NextYear(){
+                
+                mybrowser = loginToApp("abidselenium", "6D39GW"); // Use instance variable
+
+                // LOCATION IN DROPDOWN
+                    WebElement locationDropDown = mybrowser.findElement((By.id("location")));
+                    Select loc_dropdown = new Select(locationDropDown);
+                    loc_dropdown.selectByVisibleText("Sydney");
+                // HOTEL NAME IN DROPDOWN
+
+                    WebElement hotelNameDropdown = mybrowser.findElement((By.id("hotels")));
+                    Select hotel_dropdown = new Select(hotelNameDropdown);
+                    hotel_dropdown.selectByVisibleText("Hotel Creek");
+
+                // ROOM TYPE IN DROPDOWN
+                    WebElement roomTypeDropdown = mybrowser.findElement((By.id("room_type")));
+                    Select room_dropdown = new Select(roomTypeDropdown);
+                    room_dropdown.selectByVisibleText("Deluxe");
+
+                // NUMBER OF ROOMS IN DROPDOWN
+                    WebElement numberOfRoomsDropDown = mybrowser.findElement((By.id("room_nos")));
+                    Select num_rooms = new Select(numberOfRoomsDropDown);
+                    num_rooms.selectByVisibleText("1 - One");
+
+                // CHECK-IN DATE (TEXT FIELD)
+                    WebElement checkIn = mybrowser.findElement(By.id("datepick_in"));
+                    checkIn.clear();
+                    checkIn.sendKeys("22/04/2026");
+
+
+                // CHECKOUT DATE (TEXT)
+                    WebElement checkOut = mybrowser.findElement(By.id("datepick_out"));
+                    checkOut.clear();
+                    checkOut.sendKeys("23/04/2026");
+
+                // ADULTS PER ROOM DROPDOWN
+
+                    WebElement noOfAdults = mybrowser.findElement(By.id("adult_room"));
+                    Select num_adults = new Select(noOfAdults);
+                    num_adults.selectByVisibleText("1 - One");
+
+                // PRESS SEARCH BUTTON
+                    mybrowser.findElement(By.id("Submit")).click();
+
+                // verify REDIRECT TO VIEW HOTEL PAGE
+                // VERIFY SEARCH RESULT PAGE
+                Assert.assertEquals(mybrowser.getTitle(), "Adactin.com - Select Hotel");
+
+
+                // ====================================
+                    // CHECK THE DATA IN THE GRID
+
+                // LOCATION • HOTEL • ROOM • CHECKIN • CHECKOUT • RATE • TOTAL
+                    // VERIFY DATA IN GRID
+                String hotelName = mybrowser.findElement(By.id("hotel_name_0")).getAttribute("value");
+                String location = mybrowser.findElement(By.id("location_0")).getAttribute("value");
+                String roomType = mybrowser.findElement(By.id("room_type_0")).getAttribute("value");
+                String checkInDate = mybrowser.findElement(By.id("arr_date_0")).getAttribute("value");
+                String checkOutDate = mybrowser.findElement(By.id("dep_date_0")).getAttribute("value");
+                String rate = mybrowser.findElement(By.id("price_night_0")).getAttribute("value");
+                String total = mybrowser.findElement(By.id("total_price_0")).getAttribute("value");
+
+                Assert.assertEquals(location, "Sydney");
+                Assert.assertEquals(hotelName, "Hotel Creek");
+                Assert.assertEquals(roomType, "Deluxe");
+                Assert.assertEquals(checkInDate, "22/04/2026");
+                Assert.assertEquals(checkOutDate, "23/04/2026");
+                Assert.assertEquals(rate, "AUD $ 325");
+                Assert.assertEquals(total, "AUD $ 325");
+
+                // Browser will be closed automatically by @AfterMethod
+            }
+            @Test
+            public void TC4_SuperDeluxeRoom_1_Night_365th_Day(){
+                
+                mybrowser = loginToApp("abidselenium", "6D39GW"); // Use instance variable
+
+                // LOCATION IN DROPDOWN
+                    WebElement locationDropDown = mybrowser.findElement((By.id("location")));
+                    Select loc_dropdown = new Select(locationDropDown);
+                    loc_dropdown.selectByVisibleText("Sydney");
+                // HOTEL NAME IN DROPDOWN
+
+                    WebElement hotelNameDropdown = mybrowser.findElement((By.id("hotels")));
+                    Select hotel_dropdown = new Select(hotelNameDropdown);
+                    hotel_dropdown.selectByVisibleText("Hotel Creek");
+
+                // ROOM TYPE IN DROPDOWN
+                    WebElement roomTypeDropdown = mybrowser.findElement((By.id("room_type")));
+                    Select room_dropdown = new Select(roomTypeDropdown);
+                    room_dropdown.selectByVisibleText("Super Deluxe");
+
+                // NUMBER OF ROOMS IN DROPDOWN
+                    WebElement numberOfRoomsDropDown = mybrowser.findElement((By.id("room_nos")));
+                    Select num_rooms = new Select(numberOfRoomsDropDown);
+                    num_rooms.selectByVisibleText("1 - One");
+
+                // CHECK-IN DATE (TEXT FIELD)
+                    WebElement checkIn = mybrowser.findElement(By.id("datepick_in"));
+                    checkIn.clear();
+                    checkIn.sendKeys("07/11/2026");
+
+
+                // CHECKOUT DATE (TEXT)
+                    WebElement checkOut = mybrowser.findElement(By.id("datepick_out"));
+                    checkOut.clear();
+                    checkOut.sendKeys("08/11/2026");
+
+                // ADULTS PER ROOM DROPDOWN
+
+                    WebElement noOfAdults = mybrowser.findElement(By.id("adult_room"));
+                    Select num_adults = new Select(noOfAdults);
+                    num_adults.selectByVisibleText("1 - One");
+
+                // PRESS SEARCH BUTTON
+                    mybrowser.findElement(By.id("Submit")).click();
+
+                // verify REDIRECT TO VIEW HOTEL PAGE
+                // VERIFY SEARCH RESULT PAGE
+                Assert.assertEquals(mybrowser.getTitle(), "Adactin.com - Select Hotel");
+
+
+                // ====================================
+                    // CHECK THE DATA IN THE GRID
+
+                // LOCATION • HOTEL • ROOM • CHECKIN • CHECKOUT • RATE • TOTAL
+                    // VERIFY DATA IN GRID
+                String hotelName = mybrowser.findElement(By.id("hotel_name_0")).getAttribute("value");
+                String location = mybrowser.findElement(By.id("location_0")).getAttribute("value");
+                String roomType = mybrowser.findElement(By.id("room_type_0")).getAttribute("value");
+                String checkInDate = mybrowser.findElement(By.id("arr_date_0")).getAttribute("value");
+                String checkOutDate = mybrowser.findElement(By.id("dep_date_0")).getAttribute("value");
+                String rate = mybrowser.findElement(By.id("price_night_0")).getAttribute("value");
+                String total = mybrowser.findElement(By.id("total_price_0")).getAttribute("value");
+
+                Assert.assertEquals(location, "Sydney");
+                Assert.assertEquals(hotelName, "Hotel Creek");
+                Assert.assertEquals(roomType, "Super Deluxe");
+                Assert.assertEquals(checkInDate, "07/11/2026");
+                Assert.assertEquals(checkOutDate, "08/11/2026");
+                Assert.assertEquals(rate, "AUD $ 425");
+                Assert.assertEquals(total, "AUD $ 425");
+
+                // Browser will be closed automatically by @AfterMethod
+            }
+
+
+        // ====================== END OF ONE ROOM ONE NIGHT ==========================
+
+
+        // ====================== ONE ROOM MULTI NIGHT ==========================
+            
 
           
 
