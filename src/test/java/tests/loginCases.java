@@ -8,6 +8,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+
+
+import pages.LoginPage;
+
 public class loginCases {
 	
 	private WebDriver myBrowser; // Instance variable to store driver
@@ -46,20 +50,11 @@ public class loginCases {
 //	  2. In the Username field, type ....
 //	  - Identify (Locate) Username field : id="username"
 	  
-	  WebElement usernameField = myBrowser.findElement(By.id("username"));//findElement is a parser method and By is a class
-	  usernameField.sendKeys(USERNAME);//sendKeys is a method to type text in the
-//	  - Type .....
-	  
-//	   In the Password field, type ...
-//	  - Identify (Locate) Password field: name="password"
-	  WebElement passwordField = myBrowser.findElement(By.name("password"));
-	  passwordField.sendKeys(PASSWORD);//sendKeys is a method to type text in the
-//	  - Type ....
-
-	  //	  3. Click on Login button
-	  //	  - Identify (Locate) Login button: class="login_button"
-	  WebElement loginButton = myBrowser.findElement(By.id("login"));
-	  loginButton.click();//click() is a method to perform click action on the identified element
+		// Create Page Object for Login Page
+	 LoginPage loginPage = new LoginPage(myBrowser);
+	 loginPage.usernameField.sendKeys(USERNAME);
+	 loginPage.passwordField.sendKeys(PASSWORD);
+	 loginPage.loginButton.click();
 
 	  //	  4. Verify that user is successfully logged in
 	  String actualPageTitle = myBrowser.getTitle();	
@@ -90,17 +85,14 @@ public class loginCases {
 	  	myBrowser = new ChromeDriver(); // Use instance variable
 	  	myBrowser.get("https://adactinhotelapp.com/index.php");
 	  	
-	  	WebElement usernameField = myBrowser.findElement(By.id("username"));
-	  	usernameField.sendKeys("invalidUsername");
-	  	
-	  	WebElement passwordField = myBrowser.findElement(By.name("password"));
-	  	passwordField.sendKeys("invalidPassword");
-	  	
-	  	WebElement loginButton = myBrowser.findElement(By.id("login"));
+	  	LoginPage loginPage = new LoginPage(myBrowser);
+		loginPage.usernameField.sendKeys("invalidUser");
+		loginPage.passwordField.sendKeys("invalidPass");
+		//	  	the error message should appear after clicking the login button
+		loginPage.loginButton.click();
 	  	
 	  	
-//	  	the error message should appear after clicking the login button
-	  	loginButton.click();
+	
 	  	
 	  	WebElement errorMessage = myBrowser.findElement(By.className("auth_error"));
 	  	String actualErrorMessageText = errorMessage.getText();

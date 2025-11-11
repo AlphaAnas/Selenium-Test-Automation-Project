@@ -103,7 +103,8 @@ public class searchHotel {
                     WebElement roomTypeDropdown = mybrowser.findElement((By.id("room_type")));
                     Select room_dropdown = new Select(roomTypeDropdown);
                     room_dropdown.selectByVisibleText("Standard");
-
+                    
+                    
                 // NUMBER OF ROOMS IN DROPDOWN
                     WebElement numberOfRoomsDropDown = mybrowser.findElement((By.id("room_nos")));
                     Select num_rooms = new Select(numberOfRoomsDropDown);
